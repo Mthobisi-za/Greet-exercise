@@ -1,8 +1,10 @@
 
 var btns = document.querySelector(".button");
 var reset = document.querySelector(".reset");
+if(localStorage.getItem("names")!== null){
+    document.querySelector(".num").innerHTML = localStorage.getItem("names").split(',').length;
+}
 
-document.querySelector(".num").innerHTML = localStorage.getItem("names").split(',').length;
 var arg = []
 var name;
 var lang;
