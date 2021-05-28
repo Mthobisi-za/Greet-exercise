@@ -18,16 +18,6 @@ function makeChanges(){
     //global values
     ///collect user input
     //collect value from inputs
-    function setUserName(str){
-        var checkNum = /\d/;
-        if(checkNum.test(str) || str == ""){
-            document.querySelector(".errspan").innerHTML = 'Please input text that has alphabetic values only'
-            return "Please input text that has alphabetic values only."
-        } else{
-            name = str.toLowerCase()
-            return str.toLowerCase()
-            }
-    } setUserName(nameS)
     function setUserLang(str){
         try{
             if(str.value == null){
@@ -47,7 +37,7 @@ function makeChanges(){
             document.querySelector(".errR").innerHTML = "Please select language";
         }
         
-    }  setUserLang(langS)
+    }  
     //collect user inputs
     //store the values to local storage
     function storeNames(){
@@ -63,18 +53,52 @@ function makeChanges(){
             ///already exist
             return "already exist"
         }else{
-            var checkNum = /\d/;
-            if(checkNum.test(name) || name == ""){
-
-            } else{
+            
             //add the arrays and assign new values
             var df = [localStorage.getItem("names")];
             df.push(name)
              localStorage.setItem("names", df);
              return localStorage.getItem("names") 
-            }
+            
         }
-    } storeNames()
+    } 
+
+    function updateElem(){
+        if( localStorage.getItem("lang") !== null){
+             var resultElem = document.querySelector("#namees");
+           resultElem.style.color = "gray";
+           var langj = localStorage.getItem("lang")
+           var upper = name.charAt(0).toUpperCase()+ name.slice(1);
+           if(localStorage.getItem("lang")== "Isizulu"){
+               resultElem.innerHTML = "Saw'bona" + " " + upper;
+           } else if(localStorage.getItem("lang") == "English"){
+               resultElem.innerHTML = "Hello" + " " + upper;
+           } else{
+               resultElem.innerHTML = "Dumela" + " " + upper;
+           }
+        }else{
+           
+        }
+    
+   } 
+
+    function setUserName(str){
+        var checkNum = /\d/;
+        if(checkNum.test(str) || str == ""){
+            document.querySelector(".errspan").innerHTML = 'Please input text that has alphabetic values only'
+            return "Please input text that has alphabetic values only."
+        } else{
+            name = str.toLowerCase();
+            setUserLang(langS);
+            storeNames();
+            updateElem();
+            return str.toLowerCase()
+            }
+    } setUserName(nameS) 
+
+
+    
+    
     //store the values to local storage
     var counterElem = document.querySelector(".num");
     ///get the counter
@@ -84,19 +108,14 @@ function makeChanges(){
     } getCounter()
     ///get the counter
      ////elements
-     
-     var resultElem = document.querySelector("#namees");
-     resultElem.style.color = "gray";
-     var upper = name.charAt(0).toUpperCase()+ name.slice(1);
-     if(localStorage.getItem("lang")== "Isizulu"){
-         resultElem.innerHTML = "Saw'bona" + " " + upper;
-     } else if(localStorage.getItem("lang") == "English"){
-         resultElem.innerHTML = "Hello" + " " + upper;
-     } else{
-         resultElem.innerHTML = "Dumela" + " " + upper;
-     }
+    
     //input the result
     ////return an objects factory functions
+    if(lang == undefined){
+        console.log("im playing")
+    }else{
+        console.log("nahh")
+    }
     //empty every value
     document.querySelector("#name").value = ""
     document.getElementById("zulu").checked = false;
@@ -106,11 +125,17 @@ function makeChanges(){
         setUserName,
         setUserLang,
         storeNames,
-        getCounter
+        getCounter,
+        updateElem
     }
 
 }
 function backToDefault(){
+    document.querySelector(".errspan").innerHTML =""
+    document.querySelector("#name").value = ""
+    document.getElementById("zulu").checked = false;
+    document.getElementById("eng").checked = false;
+    document.getElementById("Dumela").checked = false;
     localStorage.clear()
     arg.length = 0;
     document.querySelector(".aler").innerHTML = "you just deleted all data";
