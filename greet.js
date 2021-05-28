@@ -87,6 +87,8 @@ var lang = document.querySelector("input[name='Group']:checked");
 }
 function backToDefault(){
     localStorage.clear()
+   
+    document.querySelector(".aler").innerHTML = "you just deleted all data";
     document.querySelector(".num").innerHTML = 0;
     document.querySelector("#namees").value = ""
 }

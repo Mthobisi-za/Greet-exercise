@@ -1,29 +1,51 @@
-<<<<<<< HEAD
+
+var btns = document.querySelector(".button");
+var reset = document.querySelector(".reset");
+
+document.querySelector(".num").innerHTML = localStorage.getItem("names").split(',').length;
+var arg = []
+var name;
+var lang;
 function makeChanges(){
     ///global values
-    var arg = []
-    var name;
-    var lang;
+    var nameS = document.querySelector("#name").value.toLowerCase();
+    var langS = document.querySelector("input[name='Group']:checked");
+//    var arg = []
+//    var name;
+//    var lang;
     //global values
     ///collect user input
+    //collect value from inputs
     function setUserName(str){
         var checkNum = /\d/;
-        if(checkNum.test(str) && str !== ""){
+        if(checkNum.test(str) || str == ""){
+            document.querySelector(".errspan").innerHTML = 'Please input text that has alphabetic values only'
             return "Please input text that has alphabetic values only."
         } else{
             name = str.toLowerCase()
             return str.toLowerCase()
             }
-    }
+    } setUserName(nameS)
     function setUserLang(str){
-        if(str == "Isizulu" || str == "isizulu"){
+        try{
+            if(str.value == null){
+                ///it will fail n run catch
+        }
+        else if(str.value == "Isizulu" || str.value == "isizulu"){
+            localStorage.setItem("lang", str.value)
             return lang = "Saw'bona"
-        } else if(str == "English" || str == "english"){
+        } else if(str.value == "English" || str.value == "english"){
+            localStorage.setItem("lang", str.value)
             return lang = "Hello"
         } else{
+            localStorage.setItem("lang", str.value)
             return lang = "Dumela"
         }
-    }
+        }catch (e){
+            document.querySelector(".errR").innerHTML = "Please select language";
+        }
+        
+    }  setUserLang(langS)
     //collect user inputs
     //store the values to local storage
     function storeNames(){
@@ -44,79 +66,52 @@ function makeChanges(){
              localStorage.setItem("names", df);
              return localStorage.getItem("names")
         }
-    }
+    } storeNames()
     //store the values to local storage
+    var counterElem = document.querySelector(".num");
     ///get the counter
     function getCounter(){
+        counterElem.innerHTML = localStorage.getItem("names").split(',').length;
         return localStorage.getItem("names").split(',').length;
-    }
+    } getCounter()
     ///get the counter
+     ////elements
+     
+     var resultElem = document.querySelector("#namees");
+     resultElem.style.color = "gray";
+     var upper = name.charAt(0).toUpperCase()+ name.slice(1);
+     if(localStorage.getItem("lang")== "Isizulu"){
+         resultElem.innerHTML = "Saw'bona" + " " + upper;
+     } else if(localStorage.getItem("lang") == "English"){
+         resultElem.innerHTML = "Hello" + " " + upper;
+     } else{
+         resultElem.innerHTML = "Dumela" + " " + upper;
+     }
+    //input the result
     ////return an objects factory functions
+    //empty every value
+    document.querySelector("#name").value = ""
+    document.getElementById("zulu").checked = false;
+    document.getElementById("eng").checked = false;
+    document.getElementById("Dumela").checked = false;
     return{
         setUserName,
         setUserLang,
         storeNames,
         getCounter
     }
-=======
-function makeChanges(){
-    ///global values
-    var arg = []
-    var name;
-    var lang;
-    //global values
-    ///collect user input
-    function setUserName(str){
-        var checkNum = /\d/;
-        if(checkNum.test(str) && str !== ""){
-            return "Please input text that has alphabetic values only."
-        } else{
-            name = str.toLowerCase()
-            return str.toLowerCase()
-            }
-    }
-    function setUserLang(str){
-        if(str == "Isizulu" || str == "isizulu"){
-            return lang = "Saw'bona"
-        } else if(str == "English" || str == "english"){
-            return lang = "Hello"
-        } else{
-            return lang = "Dumela"
-        }
-    }
-    //collect user inputs
-    //store the values to local storage
-    function storeNames(){
-        var local = localStorage.getItem("names");
-        //reference local storage
-        if(local == null){
-            //does not exist and local storage is not declared
-            arg.push(name)
-             localStorage.setItem("names", arg)
-            return localStorage.getItem("names")
-        }  else if(localStorage.getItem("names").indexOf(name) !== -1){
-            ///already exist
-            return "already exist"
-        }else{
-            //add the arrays and assign new values
-            var df = [localStorage.getItem("names")];
-            df.push(name)
-             localStorage.setItem("names", df);
-             return localStorage.getItem("names")
-        }
-    }
-    //store the values to local storage
-    ///get the counter
-    function getCounter(){
-        return localStorage.getItem("names").split(',').length;
-    }
-    ///get the counter
-    ////return an objects factory functions
-    return{
-        setUserName,
-        setUserLang,
-        storeNames,
-        getCounter
-    }
->>>>>>> be654160ce270c0c5318548eb4482b3f9cd4ecd0
+
 }
+function backToDefault(){
+    localStorage.clear()
+    arg.length = 0;
+    document.querySelector(".aler").innerHTML = "you just deleted all data";
+    document.querySelector(".num").innerHTML = 0;
+    document.querySelector("#namees").innerHTML = "";
+    document.querySelector(".aler").style.color = "Orange"
+
+    
+}
+///event listeners
+btns.addEventListener("click", makeChanges);
+reset.addEventListener("click", backToDefault);
