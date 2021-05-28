@@ -51,6 +51,7 @@ function makeChanges(){
     //collect user inputs
     //store the values to local storage
     function storeNames(){
+        var checkNum = /\d/;
         var local = localStorage.getItem("names");
         //reference local storage
         if(local == null){
@@ -62,11 +63,16 @@ function makeChanges(){
             ///already exist
             return "already exist"
         }else{
+            var checkNum = /\d/;
+            if(checkNum.test(name) || name == ""){
+
+            } else{
             //add the arrays and assign new values
             var df = [localStorage.getItem("names")];
             df.push(name)
              localStorage.setItem("names", df);
-             return localStorage.getItem("names")
+             return localStorage.getItem("names") 
+            }
         }
     } storeNames()
     //store the values to local storage
