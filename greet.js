@@ -82,7 +82,9 @@ var lang = document.querySelector("input[name='Group']:checked");
             }
         }
             
-           }       //radio button check  
+           }     
+             //radio button check  
+             document.querySelector(".aler").innerHTML = "";
 ///validate data
 }
 function backToDefault(){

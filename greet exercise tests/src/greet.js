@@ -9,6 +9,8 @@ var arg = []
 var name;
 var lang;
 function makeChanges(){
+    document.querySelector(".errspan").innerHTML =""
+    document.querySelector("#namees").innerHTML = "";
     ///global values
     var nameS = document.querySelector("#name").value.toLowerCase();
     var langS = document.querySelector("input[name='Group']:checked");
