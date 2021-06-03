@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="greet.css">
     <meta charset="UTF-8">
@@ -7,42 +8,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greet Exercise</title>
 </head>
+
 <body>
     <div class="container">
         <div class="holder">
-        <div class="greet_section">
-            <h2 class="h2_greet">Greeting</h2>
+            <div class="greet_section">
+                <h2 class="h2_greet">Greeting</h2>
+            </div>
+            <div class="info_">
+                <label for="name" class="label_first">Name</label></span>
+                <input type="text" id="name" placeholder="John">
+            </div>
+            <div class="errors" style="color: red;"><span class="errspan"></span></div> <br>
+            <div class="radio">
+                <!-----sections for each buttons----->
+                <section class="style">
+                    <input type="radio" name="Group" id="zulu" value="Isizulu">
+                    <label for="zulu" class="group__">Isizulu</label>
+
+                </section>
+                <section class="style">
+                    <input type="radio" name="Group" id="Dumela" value="Sesotho">
+                    <label for="Dumela" class="group__">Sesotho</label>
+                </section>
+                <section class="style">
+                    <input type="radio" name="Group" id="eng" value="English">
+                    <label for="eng" class="group__">English</label>
+                </section>
+            </div> <span class="errR" style="color: red;"></span> <br> <br>
+            <div class="btn">
+                <button id="grt" class="button">Greet Me</button> <button class="reset">Reset</button>
+            </div> <br>
+            <span id="lang"></span><span id="namees" style="color: gray;"></span> <br> <br>
+            <div class="floa"><span class="float">Number of greeted people is</span> <span class="num">0</span></div>
+            <br>
+            <div class="alert"><span class="aler" style="color: orange;"></span></div>
         </div>
-        <div class="info_">
-            <label for="name" class="label_first">Name</label></span>
-            <input type="text" id="name" placeholder="John">
-        </div> <div class="errors" style="color: red;"><span class="errspan"></span></div> <br>
-        <div class="radio">
-            <!-----sections for each buttons----->
-            <section class="style">
-                <input type="radio" name="Group" id="zulu" value="Isizulu">
-                <label for="zulu" class="group__">Isizulu</label>
-               
-            </section>
-            <section class="style">
-                <input type="radio" name="Group" id="Dumela" value="Sesotho">
-                <label for="Dumela" class="group__">Sesotho</label>   
-            </section>
-            <section class="style">
-                <input type="radio" name="Group" id="eng" value="English">
-                <label for="eng" class="group__">English</label>    
-            </section>
-        </div> <span class="errR" style="color: red;"></span> <br> <br>
-        <div class="btn">
-            <button id="grt" class="button">Greet Me</button> <button class="reset">Reset</button>
-        </div> <br> 
-        <span id="lang"></span><span id="namees"></span> <br> <br>
-        <div class="floa"><span class="float">Number of greeted people is</span> <span class="num">0</span></div> 
-         <br>
-        <div class="alert"><span class="aler"></span></div>
     </div>
-</div>
-    
+
 </body>
-<script src="greet.js"></script>
+<script src="greet-dom-logic.js"></script>
+<script src="greet-business-logic.js"></script>
+
+
 </html>
