@@ -1,24 +1,23 @@
-var btn = document.querySelector(".button");
 var data;
 
-function businessLogic() {
+function businessLogic(strName, strLang) {
     ///default
-    //inputs
-    var name = document.querySelector("#name").value.toLowerCase();
-    var lang = document.querySelector("input[name='Group']:checked");
-    //inputs
-    //updated user values
+    console.log(strName)
+    console.log(strLang)
+        //inputs
+        //inputs
+        //updated user values
     var userName;
     var userLang;
     //updated user values
 
     function setUserNameAndLang() {
-        userName = name;
+        userName = strName;
         try {
-            if (lang.value == undefined) {
+            if (strLang.value == undefined) {
 
             } else {
-                userLang = lang.value;
+                userLang = strLang.value;
             }
         } catch (e) {
             userLang = null
@@ -34,20 +33,6 @@ function businessLogic() {
             } else if (/\d/.test(userName)) {
                 return "Please don't put numbers"
             } else {
-                //also store data to local storage
-                var local = localStorage.getItem("names");
-                lb = []
-                    //local
-                if (null == local) {
-                    lb.push(userName)
-                    localStorage.setItem("names", lb);
-                } else if (localStorage.getItem("names").indexOf(userName) !== -1) {
-                    console.log("exist")
-                } else {
-                    var df = [localStorage.getItem("names")];
-                    df.push(userName)
-                    localStorage.setItem("names", df);
-                }
                 return userName;
             }
         }
@@ -105,19 +90,10 @@ function businessLogic() {
     data = finalize()
     play(data);
 
-    function setDefault() {
-        document.querySelector("#name").value = ""
-        document.querySelector("#zulu").checked = false;
-        document.querySelector("#Dumela").checked = false;
-        document.querySelector("#eng").checked = false
-    }
-    setDefault()
+
     return {
         setUserNameAndLang,
         validateInfo,
         finalize
     }
 }
-btn.addEventListener("click", businessLogic);
-
-btn.addEventListener("click", businessLogic);
