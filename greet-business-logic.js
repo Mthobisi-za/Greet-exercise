@@ -41,7 +41,6 @@ function businessLogic(strName, strLang) {
             if (userLang == null) {
                 return "Please select Language"
             } else if (userLang !== null) {
-                localStorage.setItem("lang", userLang)
                 return userLang
             }
         }
